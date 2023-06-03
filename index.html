@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Password Generator</title>
+
+        <style>
+            *{font-size: 40px; font-family: 'Times New Roman';}
+            body{background-color: darksalmon;}
+        </style>
+
+        <script>
+            function pwgen(){
+                event.preventDefault();
+                let s6 = document.getElementById("s6");
+                let s7 = document.getElementById("s7");
+                let s8 = document.getElementById("s8"); 
+                let s9 = document.getElementById("s9");           
+                let uc = document.getElementById("uc");
+                let di = document.getElementById("di");
+                let msg = document.getElementById("msg");
+
+                let si = 0;
+                if (s6.checked)         si = 6;
+                else if (s7.checked)    si = 7;
+                else if (s8.checked)    si = 8;
+                else                    si = 9;
+
+                let text = "abcdefghijklmnopqrstuvwxyz";
+
+                if (uc.checked){
+                    text = text + text.toLocaleUpperCase();
+                }
+
+                if (di.checked){
+                    text = text + "0123456789";
+                }
+
+                let pw = "";
+                for (let i = 1; i <=si; i++){
+                    let r = parseInt(Math.random() * text.length);
+                    pw = pw + text[r];
+                }
+                msg.innerHTML=pw;
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <center>
+            <h1>Password Generator</h1>
+            <form onsubmit="pwgen()">
+                <input type="radio" name="le" id="s6" value = "s6"/> 6
+                <input type="radio" name="le" id="s7" value = "s7"/> 7
+                <input type="radio" name="le" id="s8" value = "s8"/> 8
+                <input type="radio" name="le" id="s9" value = "s9"/> 9
+                <br/><br/>
+                <input type="checkbox" value="uc" id="uc"/> Uppercase
+                <input type="checkbox" value="di" id="di"/> Digits
+                <br/><br/>
+                <input type="submit" value="Generate Password"/>
+            </form>
+                <h1 id="msg"></h1>
+        </center>
+    </body>
+</html>
